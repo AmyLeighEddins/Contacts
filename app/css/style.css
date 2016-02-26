@@ -1,0 +1,43 @@
+.sidebar {
+  float: left;
+  position: absolute;
+  width: 200px;
+  height: 100%;
+  background-color: black;
+  color: white;
+  padding-top: 20px;
+  font-size: 25px;
+}
+.links {
+  color: white;
+  padding-left: 10px;
+}
+.labels {
+  font-weight: bold;
+}
+.content {
+  color: black;
+  float: right;
+  margin-left: 250px;
+  padding-right: 40%;
+  font-size: 15px;
+  position: fixed;
+  z-index: -1;
+}
+.ng-modal-dialog {
+  /* A centered div above the overlay with a box shadow. */
+  z-index:10000;
+  position: absolute;
+  width: 15%; /* Default */
+  height: 100px;
+  /* Center the dialog */
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, 50%);
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000;
+}
+.ng-modal-dialog-content {
+  padding:10px;
+  text-align: center;
+}

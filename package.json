@@ -1,0 +1,13 @@
+{
+  "name": "Contacts",
+  "version": "0.0.0",
+  "dependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "e2eTest": "protractor test/protractor.conf.js",
+    "e2eTest-ch": "protractor test/protractor.conf.js --chrome",
+    "e2eTest-ff": "protractor test/protractor.conf.js --firefox",
+    "e2eTest-s1": "protractor test/protractor.conf.js --suite=index",
+    "e2eTest-s2": "protractor test/protractor.conf.js --suite=data"
+  }
+}

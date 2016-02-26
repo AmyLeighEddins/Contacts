@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="Contacts">
+  <head>
+    <title>Contacts</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </head>
+
+  <body>
+
+    <script type="text/ng-template" id="index.html">
+      <h1 class="labels"> All Contacts </h1>
+      <div ng-repeat="contact in contacts | orderBy : 'name'">
+        <h4 id="name"> {{contact.name}} </h4>
+        <button id="Detailbutton" ng-click="setCurrentAction('Detail', contact.id)"><a href="#/Detail">Detail</a></button>
+        <button id="Deletebutton" ng-click="setCurrentAction('Delete', contact.id)">Delete</button>
+        <modal show='showPopup' width='750px' height='90%' title="Delete Contact">
+          <form role="form">
+            <div class="form-group">
+              Are you sure?
+              <br></br>
+              <button id="Yesbutton" ng-click="deleteContact()"> Yes </a> </button>
+              <button id="Nobutton" ng-click="togglePopup()"> &nbsp;No&nbsp; </a> </button>
+            </div>
+          </form>
+        </modal>
+      </div>
+    </script>
+
+    <script type="text/ng-template" id="add.html">
+      <h1 class="labels"> Add Contact </h1>
+      <h4> <span class="labels"> Name: </span> <input type="text" ng-model="name"></h4>
+      <h4> <span class="labels"> Address: </span> <input type="text" ng-model="address"></h4>
+      <h4> <span class="labels"> Phone Number: </span> <input type="text" ng-model="number"></h4>
+      <button id="Savebutton" ng-click="saveContact(name, address, number)"> <a href="#/All"> Save </a> </button>
+    </script>
+
+    <script type="text/ng-template" id="detail.html">
+      <h1 class="labels"> Contact Detail </h1>
+      <div ng-if="editing == true">
+        <h4> <span class="labels"> Name: </span> <input type="text" ng-model="contact.name"></h4>
+        <h4> <span class="labels"> Address: </span> <input type="text" ng-model="contact.address"></h4>
+        <h4> <span class="labels"> Phone Number: </span> <input type="text" ng-model="contact.phone"></h4>
+      </div>
+      <div ng-if="editing == false">
+        <h4> <span class="labels"> Name: </span> {{contact.name}}</h4>
+        <h4> <span class="labels"> Address: </span> {{contact.address}}</h4>
+        <h4> <span class="labels"> Phone Number: </span> {{contact.phone}}</h4>
+      </div>
+      <div ng-if="editing == true">
+        <button id="DoneEditingbutton" ng-click="editContact(contact.id, contact.name, contact.address, contact.phone)"> Save </button>
+      </div>
+      <div ng-if="editing == false">
+        <button id="Editbutton" ng-click="toggleEdit()"> Edit </button>
+      </div>
+    </script>
+
+    <div ng-controller="MainController">
+      <div class="sidebar">
+        <div ng-repeat="action in actions">
+          <a id="{{action.name}}button" href="#/{{action.name}}" class="links">{{action.name}}</a>
+        </div>
+      </div>
+      <ng-view class="content"></ng-view>
+    </div>
+
+  </body>
+
+</hmtl>
