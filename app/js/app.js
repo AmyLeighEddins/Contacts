@@ -29,13 +29,16 @@ app.controller('MainController', function($scope){
   $scope.currentAction = $scope.actions[0];
 });
 
-app.controller('AllController', function($scope, storage){
+app.controller('AllController', function($scope, storage, $location){
   $scope.showPopup = false;
   $scope.setCurrentAction = function(action, id) {
     $scope.currentAction = action;
     currentId = id;
     if (action === "Delete") {
       $scope.togglePopup();
+    }
+    else {
+      $location.path('/Detail');
     }
   };
   $scope.togglePopup = function() {
@@ -52,7 +55,7 @@ app.controller('AllController', function($scope, storage){
   $scope.contacts = $scope.getContacts();
 });
 
-app.controller('AddController', function($scope, storage){
+app.controller('AddController', function($scope, storage, $location){
   $scope.saveContact = function(name, address, number) {
     currentId = 0;
     while (storage.checkIfExists(currentId)) {
@@ -61,6 +64,7 @@ app.controller('AddController', function($scope, storage){
     var data = {"id": currentId, "name": name, "address": address, "phone": number};
     storage.setContact(currentId, data);
     currentId++;
+    $location.path('/All');
   };
 });
 

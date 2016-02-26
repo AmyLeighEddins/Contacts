@@ -15,15 +15,15 @@
       <h1 class="labels"> All Contacts </h1>
       <div ng-repeat="contact in contacts | orderBy : 'name'">
         <h4 id="name"> {{contact.name}} </h4>
-        <button id="Detailbutton" ng-click="setCurrentAction('Detail', contact.id)"><a href="#/Detail">Detail</a></button>
-        <button id="Deletebutton" ng-click="setCurrentAction('Delete', contact.id)">Delete</button>
+        <button id="Detailbutton-{{contact.name}}" ng-click="setCurrentAction('Detail', contact.id)">Detail</button>
+        <button id="Deletebutton-{{contact.name}}" ng-click="setCurrentAction('Delete', contact.id)">Delete</button>
         <modal show='showPopup' width='750px' height='90%' title="Delete Contact">
           <form role="form">
             <div class="form-group">
               Are you sure?
               <br></br>
-              <button id="Yesbutton" ng-click="deleteContact()"> Yes </a> </button>
-              <button id="Nobutton" ng-click="togglePopup()"> &nbsp;No&nbsp; </a> </button>
+              <button id="Yesbutton-{{contact.name}}" ng-click="deleteContact()"> Yes </a> </button>
+              <button id="Nobutton-{{contact.name}}" ng-click="togglePopup()"> &nbsp;No&nbsp; </a> </button>
             </div>
           </form>
         </modal>
@@ -35,7 +35,7 @@
       <h4> <span class="labels"> Name: </span> <input type="text" ng-model="name"></h4>
       <h4> <span class="labels"> Address: </span> <input type="text" ng-model="address"></h4>
       <h4> <span class="labels"> Phone Number: </span> <input type="text" ng-model="number"></h4>
-      <button id="Savebutton" ng-click="saveContact(name, address, number)"> <a href="#/All"> Save </a> </button>
+      <button id="Savebutton" ng-click="saveContact(name, address, number)"> Save </button>
     </script>
 
     <script type="text/ng-template" id="detail.html">

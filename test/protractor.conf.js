@@ -8,7 +8,6 @@ var browsers = {
     browserName: "chrome"
   }
 };
-
 exports.config = {
   suites: {
     index: './e2e/index/index.specs.js',
@@ -19,8 +18,10 @@ exports.config = {
   //],
   baseUrl: 'http://localhost:3333',
   directConnect: true,
+  onPrepare: function() {
+    browser.manage().window().setSize(1600, 1000);
+  }
 };
-
 if (process.argv[3] === '--chrome') {
   exports.config.capabilities = browsers.chrome;
 }
