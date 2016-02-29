@@ -1,5 +1,5 @@
 {
-  "name": "Contacts",
+  "name": "contacts",
   "version": "0.0.0",
   "dependencies": {},
   "scripts": {
@@ -9,5 +9,27 @@
     "e2eTest-ff": "protractor test/protractor.conf.js --firefox",
     "e2eTest-s1": "protractor test/protractor.conf.js --suite=index",
     "e2eTest-s2": "protractor test/protractor.conf.js --suite=data"
-  }
+  },
+  "devDependencies": {
+    "jasmine-reporters": "^2.1.1"
+  },
+  "description": "Contact kata for AngularJs/Protractor training",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/AmyLeighEddins/Contacts.git"
+  },
+  "keywords": [
+    "angularjs",
+    "protractor"
+  ],
+  "author": "Amy Eddins",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/AmyLeighEddins/Contacts/issues"
+  },
+  "homepage": "https://github.com/AmyLeighEddins/Contacts#readme"
 }

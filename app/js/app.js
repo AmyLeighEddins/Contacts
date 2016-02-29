@@ -21,15 +21,15 @@ app.config(['$routeProvider', function($routeProvider) {
     });
 }]);
 
-app.controller('MainController', function($scope){
+app.controller('MainController', ['$scope', function($scope){
   $scope.actions = [
     {"id": 1, name:"All"},
     {"id": 2, name:"Add"}
   ];
   $scope.currentAction = $scope.actions[0];
-});
+}]);
 
-app.controller('AllController', function($scope, storage, $location){
+app.controller('AllController', ['$scope', 'storage', '$location', function($scope, storage, $location){
   $scope.showPopup = false;
   $scope.setCurrentAction = function(action, id) {
     $scope.currentAction = action;
@@ -47,15 +47,15 @@ app.controller('AllController', function($scope, storage, $location){
   $scope.deleteContact = function() {
     storage.removeContact(currentId);
     $scope.togglePopup();
-    window.location.reload();
+    $scope.contacts = $scope.getContacts();
   };
   $scope.getContacts = function() {
     return storage.getAllContacts();
   };
   $scope.contacts = $scope.getContacts();
-});
+}]);
 
-app.controller('AddController', function($scope, storage, $location){
+app.controller('AddController', ['$scope', 'storage', '$location', function($scope, storage, $location){
   $scope.saveContact = function(name, address, number) {
     currentId = 0;
     while (storage.checkIfExists(currentId)) {
@@ -66,9 +66,9 @@ app.controller('AddController', function($scope, storage, $location){
     currentId++;
     $location.path('/All');
   };
-});
+}]);
 
-app.controller('DetailsController', function($scope, storage){
+app.controller('DetailsController', ['$scope', 'storage', function($scope, storage){
   $scope.editing = false;
   $scope.getDetails = function(id) {
     return storage.getContact(id);
@@ -83,7 +83,7 @@ app.controller('DetailsController', function($scope, storage){
     var data = {"id": id, "name": name, "address": address, "phone": number};
     storage.setContact(id, data);
   };
-});
+}]);
 
 app.directive('modal', function() {
   return {
