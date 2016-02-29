@@ -2,22 +2,22 @@ var changeData = require('./changeData');
 
 describe("changeData", function() {
   var page = new changeData();
-  var name = "amy";
-  var address = "3704 Lodge Dr. Apt. H Hoover AL 35216";
-  var phone = "(334)207-0554";
-  beforeEach(function() {
-    page.getAdd();
-    element(by.model('name')).sendKeys(name);
-    element(by.model('address')).sendKeys(address);
-    element(by.model('number')).sendKeys(phone);
-    page.clickSave();
-    page.getMain();
-  });
-  afterEach(function() {
-    page.clickDelete(name);
-    page.clickYes(name);
-  });
   describe("add", function() {
+    var name = "amy";
+    var address = "3704 Lodge Dr. Apt. H Hoover AL 35216";
+    var phone = "(334)207-0554";
+    beforeEach(function() {
+      page.getAdd();
+      element(by.model('name')).sendKeys(name);
+      element(by.model('address')).sendKeys(address);
+      element(by.model('number')).sendKeys(phone);
+      page.clickSave();
+      page.getMain();
+    });
+    afterEach(function() {
+      page.clickDelete(name);
+      page.clickYes(name);
+    });
     it("should save your new contact if you hit save", function() {
       var names = element.all(by.repeater('contact in contacts').column('contact.name')).map(function(column) {
         return column.getText();
@@ -26,7 +26,6 @@ describe("changeData", function() {
     });
   });
   describe("delete", function() {
-    var page = new changeData();
     var name = "andy";
     var address = "3704 Lodge Dr. Apt. H Hoover AL 35216";
     var phone = "(334)207-0554";
@@ -66,8 +65,7 @@ describe("changeData", function() {
     });
   });
   describe("edit", function() {
-    var page = new changeData();
-    var name1 = "amy";
+    var name1 = "bob";
     var name2 = "ryan";
     var address = "3704 Lodge Dr. Apt. H Hoover AL 35216";
     var phone = "(334)207-0554";
@@ -77,6 +75,8 @@ describe("changeData", function() {
       element(by.model('address')).sendKeys(address);
       element(by.model('number')).sendKeys(phone);
       page.clickSave();
+    });
+    it("should save the edited contact if you edit it", function() {
       page.getMain();
       page.clickDetail(name1);
       page.clickEdit();
@@ -86,13 +86,8 @@ describe("changeData", function() {
       element(by.model('contact.name')).sendKeys(name2);
       element(by.model('contact.address')).sendKeys(address);
       element(by.model('contact.phone')).sendKeys(phone);
-      browser.sleep(10000);
       page.clickDone();
-    });
-    it("should save the edited contact if you edit it", function() {
-      browser.sleep(10000);
       page.getMain();
-      browser.sleep(10000);
       var names = element.all(by.repeater('contact in contacts').column('contact.name')).map(function(column) {
         return column.getText();
       });

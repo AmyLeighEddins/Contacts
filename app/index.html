@@ -12,7 +12,7 @@
   <body>
 
     <script type="text/ng-template" id="index.html">
-      <h1 class="labels"> All Contacts </h1>
+      <h1 id="allTitle" class="labels"> All Contacts </h1>
       <div ng-repeat="contact in contacts | orderBy : 'name'">
         <h4 id="name"> {{contact.name}} </h4>
         <button id="Detailbutton-{{contact.name}}" ng-click="setCurrentAction('Detail', contact.id)">Detail</button>
@@ -31,7 +31,7 @@
     </script>
 
     <script type="text/ng-template" id="add.html">
-      <h1 class="labels"> Add Contact </h1>
+      <h1 id="addTitle" class="labels"> Add Contact </h1>
       <h4> <span class="labels"> Name: </span> <input type="text" ng-model="name"></h4>
       <h4> <span class="labels"> Address: </span> <input type="text" ng-model="address"></h4>
       <h4> <span class="labels"> Phone Number: </span> <input type="text" ng-model="number"></h4>
@@ -39,7 +39,7 @@
     </script>
 
     <script type="text/ng-template" id="detail.html">
-      <h1 class="labels"> Contact Detail </h1>
+      <h1 id="detailTitle" class="labels"> Contact Detail </h1>
       <div ng-if="editing == true">
         <h4> <span class="labels"> Name: </span> <input type="text" ng-model="contact.name"></h4>
         <h4> <span class="labels"> Address: </span> <input type="text" ng-model="contact.address"></h4>

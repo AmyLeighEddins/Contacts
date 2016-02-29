@@ -1,3 +1,4 @@
+require('jasmine-reporters');
 var browsers = {
   firefox: {
     name: "Firefox",
@@ -10,16 +11,18 @@ var browsers = {
 };
 exports.config = {
   suites: {
-    index: './e2e/index/index.specs.js',
-    data: './e2e/data/data.specs.js'
+    index: './e2e/index.specs.js',
+    data: './e2e/data.specs.js'
   },
-  //specs: [
-  //  './e2e/**/*.specs.js'
-  //],
   baseUrl: 'http://localhost:3333',
   directConnect: true,
   onPrepare: function() {
-    browser.manage().window().setSize(1600, 1000);
+    browser.manage().window().maximize();
+  },
+  jasmineNodeOpts: {
+        isVerbose: true,
+        showColors: true,
+        includeStackTrace: false
   }
 };
 if (process.argv[3] === '--chrome') {

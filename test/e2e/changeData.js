@@ -2,6 +2,14 @@ function changeData() {
   this.saveButton = element(by.id('Savebutton'));
   this.editButton = element(by.id('Editbutton'));
   this.doneEditingButton = element(by.id('DoneEditingbutton'));
+  this.addButton = element(by.id('Addbutton'));
+  this.allButton = element(by.id('Allbutton'));
+  this.clickAdd = function() {
+    this.addButton.click();
+  };
+  this.clickAll = function() {
+    this.allButton.click();
+  };
   this.getAdd = function() {
     browser.get('/app/#/Add');
   };
@@ -31,6 +39,9 @@ function changeData() {
   };
   this.getUrl = function() {
     return browser.getCurrentUrl();
+  };
+  this.getTitle = function() {
+    return browser.getTitle();
   };
 }
 
